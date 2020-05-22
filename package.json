@@ -1,0 +1,71 @@
+{
+  "name": "@quarkly/atomize",
+  "version": "0.2.22",
+  "author": "Eddort",
+  "description": "Library for creating atomic react components",
+  "main": "build/cjs",
+  "module": "build/esm",
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "clean": "rm -rf build/*",
+    "build:cjs": "NODE_ENV=cjs babel src --out-dir build/cjs --ignore '**/*.test.js'",
+    "build:esm": "NODE_ENV=esm babel src --out-dir build/esm --ignore '**/*.test.js'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "cover": "jest --coverage && npx codecov",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quarkly/atomize"
+  },
+  "keywords": [
+    "react",
+    "styled-components",
+    "css-in-js",
+    "atomic-css",
+    "atomic-components",
+    "styled-system"
+  ],
+  "peerDependencies": {
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "ava": "^3.4.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.1.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "codecov": "^3.6.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "jest-styled-components": "^7.0.0",
+    "lint-staged": "^10.0.8",
+    "nyc": "^15.0.0",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.13.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
