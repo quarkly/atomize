@@ -1,4 +1,4 @@
-import makePropInfo, { configure } from './';
+import makePropInfo, { configure } from '.';
 import { PropInfoCollisionError } from './errors';
 
 describe('propInfo test', () => {
