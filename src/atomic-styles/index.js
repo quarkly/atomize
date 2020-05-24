@@ -1,6 +1,6 @@
 import { isArray, isPlainObject } from 'lodash/fp';
 import bootstrap from './bootstrap';
-import dict from '../utils/dict';
+import dict from '../constants/dict';
 import normalize from '../utils/normalize-props';
 import makePropInfo from '../prop-info';
 

@@ -1,4 +1,4 @@
-import { hashPropsWithAliases } from '../utils/dict';
+import { hashPropsWithAliases } from '../constants/dict';
 import { PropInfoCollisionError } from './errors';
 
 let configuration = { useValidate: process.env === 'development' };

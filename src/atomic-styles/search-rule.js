@@ -1,8 +1,6 @@
-import { hashPropsWithAliases } from '../utils/dict';
+import { hashPropsWithAliases } from '../constants/dict';
 /**
- * Обходим значиния справа на лево,
- * для покрытия кейса:
- * color -> background-color итд
+ * color -> background-color
  * @param {*} strKey
  */
 export const searchInKey = (strKey, accum) => {

@@ -1,5 +1,5 @@
 import { get, isUndefined, memoize } from 'lodash/fp';
-import themeDefault from './themeDefault';
+import themeDefault from '../constants/themeDefault';
 
 export const getFromTheme = (props, key) => get(key, props.theme) || get(key, themeDefault);
 

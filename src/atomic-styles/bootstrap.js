@@ -1,5 +1,6 @@
-import { flow, merge, get, memoize, sortBy, camelCase, kebabCase } from 'lodash';
-import { hashPropsWithAliases } from '../utils/dict';
+import { flow, merge, get, memoize, sortBy, camelCase } from 'lodash';
+import { hashPropsWithAliases } from '../constants/dict';
+import { themeProps, themePrefixes } from '../constants/theme';
 import { themeGet, getBreakpoints } from '../utils/theme';
 import splitCSSRule from './split-css-rule';
 import validate from '../utils/validate';
@@ -12,22 +13,6 @@ import {
 } from './search-rule';
 
 export const getTransformer = name => get(transformers, name, defaultTransformer);
-
-const themePrefixes = [
-  'filter',
-  'animation',
-  'background',
-  'boxShadow',
-  'color',
-  'font',
-  'fontFamily',
-  'transition',
-  'transform',
-  'transitionTimingFunction',
-  'transitionDuration',
-];
-
-const themeProps = themePrefixes.map(kebabCase);
 
 export const getThemePrefix = key => {
   if (key.endsWith('-color')) return 'color';

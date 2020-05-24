@@ -1,5 +1,5 @@
 import { transformVar, createCssRule, createEffectWrapper, createMediaWrapper } from './bootstrap';
-import themeDefault from '../utils/themeDefault';
+import themeDefault from '../constants/themeDefault';
 
 const override = { props: { theme: themeDefault } };
 
