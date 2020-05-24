@@ -8,7 +8,10 @@ describe('Test themes methods', () => {
   });
   it('parse breakpoint with screen and width', () => {
     expect(
-      createBreakpointRule([{ type: 'screen', value: true }, { type: 'min-width', value: 1200 }]),
+      createBreakpointRule([
+        { type: 'screen', value: true },
+        { type: 'min-width', value: 1200 },
+      ]),
     ).toMatchInlineSnapshot(`"(screen) and (min-width: 1200px)"`);
   });
   it('create parsed breakpoints object', () => {
