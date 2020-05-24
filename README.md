@@ -1,5 +1,5 @@
 <p>
-  <img src="logo.png" width="200px" alt="quarkly atomize">
+  <img src="docs/logo.png" width="200px" alt="quarkly atomize">
 </p>
 <h1> @quarkly/atomize </h1>
 
@@ -72,6 +72,7 @@ First argument is the configuration:
 # Docs
 
 - [Theming](https://github.com/quarkly/theme)
+- [Aliases](docs/aliases.md)
 
 # License
 
