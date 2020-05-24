@@ -1,6 +1,6 @@
 {
   "name": "@quarkly/atomize",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "author": "Eddort",
   "description": "Library for creating atomic react components",
   "main": "build/cjs",
@@ -29,9 +29,12 @@
     "styled-system"
   ],
   "peerDependencies": {
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "react": "^16.13.0"
   },
   "devDependencies": {
+    "styled-components": "^5.0.1",
+    "react": "^16.13.0",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/plugin-transform-runtime": "^7.8.3",

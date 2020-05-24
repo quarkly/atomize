@@ -64,7 +64,6 @@ export const transformVar = (key, value) => {
 
 export const createCssRule = ({ propKey, value, props, config }) => {
   const [currentKey, ...otherKeys] = propKey;
-  // это не css-свойство - выходим
   if (!hashPropsWithAliases[currentKey]) return {};
   const { transformer, compose } = hashPropsWithAliases[currentKey];
   const transform = getTransformer(transformer);
@@ -75,8 +74,6 @@ export const createCssRule = ({ propKey, value, props, config }) => {
     if (!isValid) return null;
     return { [key]: resultValue };
   };
-  // суть фичи:
-  // есть size - height и width, мы поочередно применяем это правило с одним значением
   const css = compose
     ? compose.reduce((acc, composeKey) => {
         const cCss = createCss(value, composeKey);
@@ -87,7 +84,6 @@ export const createCssRule = ({ propKey, value, props, config }) => {
   return { propKey: otherKeys, value, css, props, config };
 };
 export const createEffectWrapper = ({ propKey, value, props, css, config }) => {
-  // нет css - выходим
   if (!css) return {};
   const [currentKey, ...otherKeys] = propKey;
   const { effects } = config;
@@ -95,8 +91,6 @@ export const createEffectWrapper = ({ propKey, value, props, css, config }) => {
     return { propKey, value, css, props, config };
   }
   const effectNames = Object.keys(effects);
-  // если нет эффектов - передаем управление конструктору меда-выражений
-  // с сохранением ключа
   if (!effectNames || !effectNames.length) {
     return { propKey, value, css, props, config };
   }
@@ -114,7 +108,6 @@ export const createMediaWrapper = ({ propKey, value, props, css, config }) => {
   if (!css) return {};
   const [currentKey] = propKey;
   const breakpoints = getBreakpoints(props);
-  // если на этом этапе не верный ключ - ни выводим стили
   if (!breakpoints[currentKey]) return { propKey, value, css, props, config };
   const mediaSelector = breakpoints[currentKey];
   const newCss = {
@@ -185,7 +178,7 @@ export default (config, defaultProps = {}) => componentProps => {
   if (config.mixins) {
     deps.push(mixins);
   }
-  // накладывать по порядку
+  // apply styles in breakpoints order
   const overrider = createOverriderStyles(deps);
   const chunks = sortByBreakpointsOrder(createChunks(props, config), props);
   return chunks.reduce((acc, { chains, value }) => {
