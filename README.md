@@ -22,11 +22,7 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 # Install and Usage
 
 ```sh
-npm i @quarkly/atomize
-```
-
-```sh
-npm i styled-components
+npm i @quarkly/atomize styled-components
 ```
 
 Let's create element:
@@ -38,7 +34,10 @@ import atomize from '@quarkly/atomize';
 
 const Box = atomize.div();
 
-ReactDom.render(<Box width="100px" bgc="red" height="300px" />, document.getElementById('root'));
+ReactDom.render(
+  <Box width="100px" bgc="red" height="300px" />,
+  document.getElementById('root')
+);
 ```
 
 # Advanced usage
@@ -57,17 +56,97 @@ const Box = atomize.div({
 });
 
 ReactDom.render(
-  <Box width="100px" hover-bgc="blue" md-bgc="yellow" bgc="red" height="300px" />,
+  <Box
+    width="100px"
+    hover-bgc="blue"
+    md-bgc="yellow"
+    bgc="red"
+    height="300px"
+  />,
   document.getElementById('root'),
 );
 ```
-
 First argument is the configuration:
 
 - rules - an array of css properties that we will use.
 - effects - what effects can be used from jsx (hover, focus ..etc)
 - variant - options for component styles from themes
 - name - componentName and default styles for this component from a theme
+
+# API Reference
+
+## atomize
+
+```jsx
+import atomize from '@quarkly/atomize';
+```
+
+This is default export. This is wrapper over [styled]((https://styled-components.com/docs/api#styled)) of `styled-components`.
+
+## getTransfrom
+```jsx
+import { getTransform } from '@quarkly/atomize;
+```
+Method returned by name method of transformation by value.
+
+```tsx
+getTransform(name: string): function
+```
+* `name` - name of transformation
+
+## transformVar
+```jsx
+import { transformVar } from '@quarkly/atomize;
+```
+CSS variable transformation
+
+```ts
+transformVar(key: string, value: string): string;
+```
+
+## splitCSSRule
+```jsx
+import { splitCSSRule } from '@quarkly/atomize;
+```
+Breaks a CSS string into an array of rules
+
+```ts
+splitCSSRule<T>(rule: T, separator?: string): Array<T>
+```
+
+## themeDefault
+```jsx
+import { themeDefault } from '@quarkly/atomize;
+```
+Default theme for use css variables and definition breakpoints
+
+## dict
+```jsx
+import { dict } from '@quarkly/atomize;
+```
+Dictionary of css rules for determining their configuration
+
+```ts
+type CSSRule = {
+  alias: string
+  type: Array<string> | string
+  <key>: string
+}
+```
+* alias - alternate name for props
+* type - css value type
+
+## aliasesDict
+```jsx
+import { aliasesDict } from '@quarkly/atomize;
+```
+Dictionary of aliases, generated on top of dict
+
+```ts
+type Alias =  Omit<CSSRule, "alias"> & {
+  name: string,
+}
+```
 
 # Docs
 
