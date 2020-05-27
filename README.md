@@ -6,6 +6,20 @@
 <b>Atomize is a library for creating atomic react components.
 Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a href="https://github.com/styled-system/styled-system" target="_blank">styled-system</a>.</b>
 
+
+[![Build Status][badge]][travis]
+[![Coverage][coverage-badge]][coverage]
+[![Version][version-badge]][npm]
+![MIT License][license]
+
+[badge]: https://flat.badgen.net/travis/quarkly/atomize/master
+[travis]: https://travis-ci.com/quarkly/atomize
+[coverage-badge]: https://flat.badgen.net/codecov/c/github/quarkly/atomize
+[coverage]: https://codecov.io/github/quarkly/atomize
+[version-badge]: https://flat.badgen.net/npm/v/@quarkly/atomize
+[npm]: https://npmjs.com/package/@quarkly/atomize
+[license]: https://flat.badgen.net/badge/license/MIT/blue
+
 # Features
 
 - All CSS rules can be specified via props
@@ -68,7 +82,6 @@ ReactDom.render(
 ```
 The first argument is configuration:
 
-- rules - an array of CSS properties that we will be used
 - effects - a hash table of effects (hover, focus, etc.)
 - name - component name
 
