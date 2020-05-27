@@ -8,11 +8,11 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 
 # Features
 
-- Any css properties - props
-- Simple writing media queries
-- Alias ​​system
-- Support hover, focus ..etc as props
-- Fully themed
+- All CSS rules can be specified via props
+- Support for media queries
+- Short aliases for each property
+- Support for hover and any other pseudo-classes via props
+- Fully customizable themes
 
 # Demo
 
@@ -25,7 +25,7 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 npm i @quarkly/atomize styled-components
 ```
 
-Let's create element:
+Create a component:
 
 ```jsx
 import React from 'react';
@@ -66,12 +66,13 @@ ReactDom.render(
   document.getElementById('root'),
 );
 ```
-First argument is the configuration:
+The first argument is configuration:
 
-- rules - an array of css properties that we will use.
-- effects - what effects can be used from jsx (hover, focus ..etc)
-- variant - options for component styles from themes
-- name - componentName and default styles for this component from a theme
+- rules - an array of CSS properties that we will be used
+- effects - a hash table of effects (hover, focus, etc.)
+- name - component name
+
+The second argument is default props.
 
 # API Reference
 
@@ -81,24 +82,24 @@ First argument is the configuration:
 import atomize from '@quarkly/atomize';
 ```
 
-This is default export. This is wrapper over [styled]((https://styled-components.com/docs/api#styled)) of `styled-components`.
+This is the default export. This is a wrapping over [styled]((https://styled-components.com/docs/api#styled)) from `styled-components`.
 
 ## getTransfrom
 ```jsx
 import { getTransform } from '@quarkly/atomize;
 ```
-Method returned by name method of transformation by value.
+The method that returns a function by name to transform the value.
 
 ```tsx
 getTransform(name: string): function
 ```
-* `name` - name of transformation
+* `name` - method name for a transform
 
 ## transformVar
 ```jsx
 import { transformVar } from '@quarkly/atomize;
 ```
-CSS variable transformation
+Transform of CSS variables
 
 ```ts
 transformVar(key: string, value: string): string;
@@ -108,7 +109,7 @@ transformVar(key: string, value: string): string;
 ```jsx
 import { splitCSSRule } from '@quarkly/atomize;
 ```
-Breaks a CSS string into an array of rules
+Breaks the CSS string into an array of rules.
 
 ```ts
 splitCSSRule<T>(rule: T, separator?: string): Array<T>
@@ -118,33 +119,34 @@ splitCSSRule<T>(rule: T, separator?: string): Array<T>
 ```jsx
 import { themeDefault } from '@quarkly/atomize;
 ```
-Default theme for use css variables and definition breakpoints
+Default theme for using CSS variables and defining breakpoints.
 
 ## dict
 ```jsx
 import { dict } from '@quarkly/atomize;
 ```
-Dictionary of css rules for determining their configuration
+Dictionary for defining configuration of CSS rules 
 
 ```ts
 type CSSRule = {
-  alias: string
-  type: Array<string> | string
-  <key>: string
+  alias: string;
+  type: Array<string> | string;
+  <key>: string;
 }
 ```
-* alias - alternate name for props
-* type - css value type
+* alias - name abbreviation
+* type - CSS value type
 
 ## aliasesDict
 ```jsx
 import { aliasesDict } from '@quarkly/atomize;
 ```
-Dictionary of aliases, generated on top of dict
+Dictionary of abbreviations generated from `dict`
 
 ```ts
 type Alias =  Omit<CSSRule, "alias"> & {
-  name: string,
+  name: string;
+  <key>: string;
 }
 ```
 
