@@ -12,11 +12,11 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 [![Version][version-badge]][npm]
 ![MIT License][license]
 
-[badge]: https://flat.badgen.net/travis/quarkly/atomize/master
+[badge]: https://flat.badgen.net/travis/quarkly/atomize/master?cache=3000
 [travis]: https://travis-ci.com/quarkly/atomize
-[coverage-badge]: https://flat.badgen.net/codecov/c/github/quarkly/atomize
+[coverage-badge]: https://flat.badgen.net/codecov/c/github/quarkly/atomize?cache=3000
 [coverage]: https://codecov.io/github/quarkly/atomize
-[version-badge]: https://flat.badgen.net/npm/v/@quarkly/atomize
+[version-badge]: https://flat.badgen.net/npm/v/@quarkly/atomize?cache=3000
 [npm]: https://npmjs.com/package/@quarkly/atomize
 [license]: https://flat.badgen.net/badge/license/MIT/blue
 
