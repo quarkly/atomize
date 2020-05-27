@@ -168,6 +168,12 @@ type Alias =  Omit<CSSRule, "alias"> & {
 - [Theming](https://github.com/quarkly/theme)
 - [Aliases](docs/aliases.md)
 
+# TODOS
+
+- [ ] Code refactoring to TypeScript
+- [ ] Auto sync with "can i use" and "emmet"
+- [ ] Comprehensive documentation
+
 # License
 
 Licensed under MIT.
