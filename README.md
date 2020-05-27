@@ -16,7 +16,7 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 
 # Demo
 
-- [Codesandbox](https://codesandbox.io/s/atomize-demo-pom06?file=/src/Example.js:182-335)
+- [Codesandbox](https://codesandbox.io/s/atomize-demo-skhjw?file=/src/Example.js)
 - [Quarkly](https://quarkly.io)
 
 # Install and Usage
