@@ -18,10 +18,10 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - name: Use Node.js Stable version
+            - name: Use Node.js 12 version
               uses: actions/setup-node@v1
               with:
-                node-version: stable
+                node-version: 12
 
             - name: Install, test
               run: |
@@ -37,10 +37,10 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - name: Use Node.js Stable version
+            - name: Use Node.js 12 version
               uses: actions/setup-node@v1
               with:
-                node-version: stable
+                node-version: 12
             - name: Install, lint
               run: |
                 npm install
