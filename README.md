@@ -7,7 +7,7 @@
 Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a href="https://github.com/styled-system/styled-system" target="_blank">styled-system</a>.</b>
 
 
-![.github/workflows/CI.yml](https://github.com/quarkly/atomize/workflows/.github/workflows/CI.yml/badge.svg)
+![build](https://github.com/quarkly/atomize/workflows/.github/workflows/CI.yml/badge.svg)
 [![Coverage][coverage-badge]][coverage]
 [![Version][version-badge]][npm]
 ![MIT License][license]
