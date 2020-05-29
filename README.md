@@ -7,12 +7,11 @@
 Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a href="https://github.com/styled-system/styled-system" target="_blank">styled-system</a>.</b>
 
 
-![Build status][ci]
+![CI](https://github.com/quarkly/atomize/workflows/CI/badge.svg)
 [![Coverage][coverage-badge]][coverage]
 [![Version][version-badge]][npm]
 ![MIT License][license]
 
-[ci]: https://flat.badgen.net/travis/quarkly/atomize/master?cache=3000
 [coverage-badge]: https://flat.badgen.net/codecov/c/github/quarkly/atomize?cache=3000
 [coverage]: https://codecov.io/github/quarkly/atomize
 [version-badge]: https://flat.badgen.net/npm/v/@quarkly/atomize?cache=3000
