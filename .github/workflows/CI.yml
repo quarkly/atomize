@@ -1,0 +1,49 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - master
+            - ci
+    pull_request:
+        branches:
+            - "*"
+
+jobs:
+    test:
+        name: Test code
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js 12 version
+              uses: actions/setup-node@v1
+              with:
+                node-version: 12
+
+            - name: Install, test
+              run: |
+                npm install
+                npm run cover
+              env:
+                CI: true
+
+    lint:
+        name: Linting code
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js 12 version
+              uses: actions/setup-node@v1
+              with:
+                node-version: 12
+            - name: Install, lint
+              run: |
+                npm install
+                npm run lint
+              env:
+                CI: true
