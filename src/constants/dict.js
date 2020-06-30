@@ -254,6 +254,7 @@ const dict = {
   'page-break-after': { alias: 'pgba', type: 'string' },
   'page-break-before': { alias: 'pgbb', type: 'string' },
   'page-break-inside': { alias: 'pgbi', type: 'string' },
+  perspective: { alias: 'pspc', type: ['number', 'string'] },
   resize: { alias: 'rsz', type: 'string' },
   'text-align-last': { alias: 'tal', type: 'string' },
   'table-layout': { alias: 'tbl', type: 'string' },
