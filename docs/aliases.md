@@ -218,6 +218,7 @@ Atomize aliases are short names for each css rule
 | *page-break-after* | `pgba` |
 | *page-break-before* | `pgbb` |
 | *page-break-inside* | `pgbi` |
+| *perspective* | `pspc` |
 | *resize* | `rsz` |
 | *text-align-last* | `tal` |
 | *table-layout* | `tbl` |
