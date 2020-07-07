@@ -23,6 +23,9 @@ export const makeComponent = (styled, tag, styles, config, other) => {
   if (config.effects) {
     Component.effects = config.effects;
   }
+  if (config.overrides) {
+    Component.overrides = config.overrides;
+  }
   Component.propInfo = makePropInfo(config.propInfo || {});
   Component.defaultProps = defaultProps;
   return Component;
