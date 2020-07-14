@@ -5,7 +5,7 @@
 <h1> @quarkly/atomize </h1>
 
 <b>Atomize is a library for creating atomic react components.
-Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a href="https://github.com/styled-system/styled-system" target="_blank">styled-system</a>.</b>
+Inspired by <a href="https://tachyons.io/" target="_blank">tachyons</a> and <a href="https://github.com/styled-system/styled-system" target="_blank">styled-system</a>.</b>
 
 
 ![CI](https://github.com/quarkly/atomize/workflows/CI/badge.svg)
@@ -29,7 +29,7 @@ Inspired by <a href="http://tachyons.io/" target="_blank">tachyons</a> and <a hr
 
 # General Resources
 
-- [Official Site](http://atomize.quarkly.io/)
+- [Official Site](https://atomize.quarkly.io/)
 
 # Demo
 
