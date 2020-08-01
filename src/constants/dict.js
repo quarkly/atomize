@@ -272,7 +272,7 @@ const dict = {
   'writing-mode': { alias: 'wm', type: 'string' },
   'word-wrap': { alias: 'wow', type: 'string' },
   zoom: { alias: 'zom', type: 'string' },
-  fill: { alias: 'fil', type: 'string'}
+  fill: { alias: 'fil', type: 'string' },
 };
 
 export const hashPropsWithAliases = Object.keys(dict).reduce((acc, name) => {
