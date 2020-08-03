@@ -23,7 +23,7 @@ const fakeTheme = {
 
 describe('Test modifiers', () => {
   test('variant works fine', () => {
-    const rule = bootsrap({ variant: 'someVariants', mixins: true, aliases: true });
+    const rule = bootsrap({ variant: 'someVariants', mixins: true, useAliases: true });
     expect(rule({ theme: fakeTheme, variant: 'alert' })).toStrictEqual({
       margin: '300px',
       color: 'red',
@@ -33,7 +33,7 @@ describe('Test modifiers', () => {
         m: 10,
         theme: fakeTheme,
         mixins: true,
-        aliases: true,
+        useAliases: true,
       }),
     ).toStrictEqual({
       margin: '10px',
@@ -41,7 +41,7 @@ describe('Test modifiers', () => {
     expect(rule({ theme: fakeTheme })).toStrictEqual({});
   });
   test('themed works fine', () => {
-    const rule = bootsrap({ name: 'someName', mixins: true, aliases: true });
+    const rule = bootsrap({ name: 'someName', mixins: true, useAliases: true });
     expect(rule({ m: 10, theme: fakeTheme })).toStrictEqual({
       margin: '10px',
       padding: '30px',
@@ -52,7 +52,7 @@ describe('Test modifiers', () => {
     });
   });
   test('mixins works fine', () => {
-    const rule = bootsrap({ mixins: true, aliases: true });
+    const rule = bootsrap({ mixins: true, useAliases: true });
     expect(rule({ m: 10, theme: fakeTheme, cRed: true })).toStrictEqual({
       margin: '10px',
       color: 'red',
@@ -70,7 +70,7 @@ describe('Test modifiers', () => {
       name: 'someName',
       variant: 'someVariants',
       mixins: true,
-      aliases: true,
+      useAliases: true,
     });
     expect(rule({ theme: fakeTheme, variant: 'alert' })).toStrictEqual({
       margin: '300px',

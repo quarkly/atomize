@@ -1,4 +1,10 @@
-import { transformVar, createCssRule, createEffectWrapper, createMediaWrapper } from './bootstrap';
+import {
+  transformVar,
+  createCssRule,
+  createEffectWrapper,
+  createMediaWrapper,
+  ruleExists,
+} from './bootstrap';
 import themeDefault from '../constants/themeDefault';
 
 const override = { props: { theme: themeDefault } };
@@ -49,6 +55,19 @@ describe('Chain styles', () => {
       value: '--blue',
     });
     expect(css).toStrictEqual({ 'background-color': 'var(--qtheme-color-blue)' });
+  });
+});
+
+describe('work with useAliases', () => {
+  test('enable', () => {
+    expect(ruleExists('m')).toBeTruthy();
+    expect(ruleExists('d')).toBeTruthy();
+    expect(ruleExists('bgc')).toBeTruthy();
+  });
+  test('disable', () => {
+    expect(ruleExists('m', { useAliases: false })).toBeFalsy();
+    expect(ruleExists('d', { useAliases: false })).toBeFalsy();
+    expect(ruleExists('bgc', { useAliases: false })).toBeFalsy();
   });
 });
 

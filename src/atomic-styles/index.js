@@ -6,6 +6,8 @@ import makePropInfo from '../prop-info';
 
 const defaultStyles = Object.keys(dict);
 
+const defaultConfig = { useAliases: true };
+
 export const isTemplate = arg => isArray(arg);
 
 export const makeComponent = (styled, tag, styles, config, other) => {
@@ -36,7 +38,7 @@ export const makeAtom = styled => (tag, config = {}, defaultProps) => {
   if (isTemplate(config)) {
     return makeComponent(styled, tag, styles, {}, config);
   }
-  return makeComponent(styled, tag, styles, config, defaultProps);
+  return makeComponent(styled, tag, styles, { ...defaultConfig, ...config }, defaultProps);
 };
 
 export const wrap = styled => {
