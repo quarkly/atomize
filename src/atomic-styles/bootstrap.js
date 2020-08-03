@@ -1,5 +1,5 @@
 import { flow, merge, get, memoize, sortBy, camelCase } from 'lodash';
-import { hashPropsWithAliases } from '../constants/dict';
+import dict, { hashPropsWithAliases } from '../constants/dict';
 import { themeProps, themePrefixes } from '../constants/theme';
 import { themeGet, getBreakpoints } from '../utils/theme';
 import splitCSSRule from './split-css-rule';
@@ -47,9 +47,15 @@ export const transformVar = (key, value) => {
   });
 };
 
+export const ruleExists = (key, config) => {
+  if (!config) return hashPropsWithAliases[key];
+  if (config.useAliases) return hashPropsWithAliases[key];
+  return dict[key];
+};
+
 export const createCssRule = ({ propKey, value, props, config }) => {
   const [currentKey, ...otherKeys] = propKey;
-  if (!hashPropsWithAliases[currentKey]) return {};
+  if (!ruleExists(currentKey, config)) return {};
   const { transformer, compose } = hashPropsWithAliases[currentKey];
   const transform = getTransformer(transformer);
   const createCss = (n, key) => {
