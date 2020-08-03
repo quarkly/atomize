@@ -236,3 +236,4 @@ Atomize aliases are short names for each css rule
 | *writing-mode* | `wm` |
 | *word-wrap* | `wow` |
 | *zoom* | `zom` |
+| *fill* | `fil` |
