@@ -235,5 +235,6 @@ Atomize aliases are short names for each css rule
 | *widows* | `wid` |
 | *writing-mode* | `wm` |
 | *word-wrap* | `wow` |
+| *overflow-wrap* | `none` |
 | *zoom* | `zom` |
 | *fill* | `fil` |
