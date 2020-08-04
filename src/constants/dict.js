@@ -271,6 +271,7 @@ const dict = {
   widows: { alias: 'wid', type: 'string' },
   'writing-mode': { alias: 'wm', type: 'string' },
   'word-wrap': { alias: 'wow', type: 'string' },
+  'overflow-wrap': { type: 'string' },
   zoom: { alias: 'zom', type: 'string' },
   fill: { alias: 'fil', type: 'string' },
 };
