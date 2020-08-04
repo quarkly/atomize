@@ -85,6 +85,12 @@ You can use the system of alias properties to make it easier to use. For example
 
 To see the full list of properties and aliases, follow this [link](https://github.com/quarkly/atomize/blob/master/docs/aliases.md).
 
+You can also disable aliases for the specific component if you need. Just pass an object with the configuration where set "useAliases: false".
+
+```jsx
+const Box = atomize.div({ useAliases: false })
+```
+
 ## Themes
 
 By default, Atomize components do not include a theme and you need to set up dependencies:
