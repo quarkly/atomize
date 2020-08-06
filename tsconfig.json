@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build"]
+}

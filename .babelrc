@@ -1,14 +1,4 @@
 {
-  "presets": [["@babel/env", { "loose": true }], "@babel/react"],
-  "plugins": ["@babel/transform-runtime"],
-  "env": {
-    "cjs": {
-      "presets": [["@babel/env", { "loose": true }]],
-      "plugins": ["@babel/transform-runtime", "lodash"]
-    },
-    "esm": {
-      "presets": [["@babel/env", { "loose": true, "modules": false }]],
-      "plugins": [["@babel/transform-runtime", { "useESModules": true }], "lodash"]
-    }
-  }
+  "presets": [["@babel/env", { "loose": true }], "@babel/preset-typescript", "@babel/react"],
+  "plugins": ["@babel/plugin-transform-runtime", "lodash"]
 }
