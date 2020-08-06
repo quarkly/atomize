@@ -8,8 +8,8 @@
   "types": "build/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "postbuild": "rm -rf build-types",
-    "prebuild": "rm -rf build/* && mkdir build-types",
+    "postbuild": "rimraf build-types",
+    "prebuild": "rimraf build/* && mkdir build-types",
     "build": "rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -70,6 +70,7 @@
     "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-test-renderer": "^16.13.0",
+    "rimraf": "^3.0.2",
     "rollup": "^2.23.0",
     "rollup-plugin-bundle-size": "^1.0.3",
     "rollup-plugin-dts": "^1.4.10",
