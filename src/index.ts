@@ -8,5 +8,4 @@ export { getTransformer, transformVar } from './atomic-styles/bootstrap';
 
 export * from './prop-info';
 
-
 export default wrap(SC);

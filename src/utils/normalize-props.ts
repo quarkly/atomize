@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { isString, isObject } from 'lodash/fp';
-import { Descripton, CompoundedComponent } from '../types';
+import styled from 'styled-components';
+import { CompoundedComponent } from '../types/CompoundedComponent';
 
 const normalizeMap = {
   as(value) {
@@ -21,10 +22,10 @@ export const normalizer = props => {
   }, {});
 };
 
-export default (Tag) =>
-  React.forwardRef((props, ref) =>
+export default (Tag: keyof JSX.IntrinsicElements | React.ComponentType<any>) =>
+  (React.forwardRef<typeof Tag>((props, ref) =>
     React.createElement(Tag, {
       ref,
       ...normalizer(props),
     }),
-  ) as CompoundedComponent;
+  ) as unknown) as CompoundedComponent<typeof Tag>;
