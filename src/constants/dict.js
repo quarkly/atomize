@@ -274,6 +274,7 @@ const dict = {
   'overflow-wrap': { type: 'string' },
   zoom: { alias: 'zom', type: 'string' },
   fill: { alias: 'fil', type: 'string' },
+  hyphens: { alias: 'hphs', type: 'string' },
 };
 
 export const hashPropsWithAliases = Object.keys(dict).reduce((acc, name) => {
