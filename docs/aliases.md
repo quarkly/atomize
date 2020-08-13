@@ -238,3 +238,4 @@ Atomize aliases are short names for each css rule
 | *overflow-wrap* | `none` |
 | *zoom* | `zom` |
 | *fill* | `fil` |
+| *hyphens* | `hphs` |
