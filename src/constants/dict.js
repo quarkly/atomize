@@ -249,7 +249,7 @@ const dict = {
   'page-break-inside': { alias: 'pgbi', type: 'string' },
   perspective: { alias: 'pspc', type: ['number', 'string'] },
   'perspective-origin': { alias: 'pspco', type: ['number', 'string'] },
-  'pointer-events': { alias: 'pi', type: 'string' },
+  'pointer-events': { alias: 'pe', type: 'string' },
   position: { alias: 'pos', type: 'string' },
   quotes: { alias: 'q', type: 'string' },
   ratio: { type: ['number', 'string'] },
