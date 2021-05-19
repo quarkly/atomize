@@ -172,10 +172,14 @@ export default (config, defaultProps = {}) => componentProps => {
   // apply styles in breakpoints order
   const overrider = createOverriderStyles(deps);
   const chunks = sortByBreakpointsOrder(createChunks(props, config), props);
-  return chunks.reduce((acc, { chains, value }) => {
+  const cleanedProps = { ...props };
+  const cssObject = chunks.reduce((acc, { chains, value }) => {
     const propKey = createChainStream(chains);
     const { css } = createStyleRule({ propKey, value, props, config });
     if (!css) return acc;
+
+    delete cleanedProps[propKey];
     return merge(acc, css);
   }, overrider(props));
+  return { cssObject, cleanedProps };
 };
