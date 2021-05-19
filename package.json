@@ -1,6 +1,6 @@
 {
   "name": "@quarkly/atomize",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "Eddort",
   "description": "Library for creating atomic react components",
   "main": "build/cjs",
