@@ -178,7 +178,7 @@ export default (config, defaultProps = {}) => componentProps => {
     const { css } = createStyleRule({ propKey, value, props, config });
     if (!css) return acc;
 
-    delete cleanedProps[propKey.join('-')];
+    delete cleanedProps[propKey.reverse().join('-')];
     return merge(acc, css);
   }, overrider(props));
   return { cssObject, cleanedProps };
