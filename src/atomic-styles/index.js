@@ -15,7 +15,16 @@ export const makeComponent = (styled, tag, styles, config, other) => {
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
 
-  const Component = normalize(styled(tag)(rules, rulesCreator));
+  const Component = normalize(
+    styled(tag).withConfig({
+      shouldForwardProp: prop => !['cssObject'].includes(prop),
+    })(rules, props => {
+      const { cssObject } = props;
+      return cssObject;
+    }),
+    rulesCreator,
+  );
+
   if (config.name) {
     Component.displayName = config.name;
   }
