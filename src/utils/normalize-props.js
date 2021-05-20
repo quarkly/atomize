@@ -20,12 +20,12 @@ export const normalizer = props => {
   }, {});
 };
 
-export default (Tag, cb) =>
+export default (Tag, cb, cleanProps) =>
   React.forwardRef((props, ref) => {
     const { cssObject, cleanedProps } = cb(props);
     return React.createElement(Tag, {
       ref,
-      ...normalizer(cleanedProps),
+      ...normalizer(cleanProps ? cleanedProps : props),
       cssObject,
     });
   });

@@ -14,6 +14,7 @@ export const makeComponent = (styled, tag, styles, config, other) => {
   const defaultProps = isPlainObject(other) ? other : undefined;
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
+  const cleanProps = typeof tag === 'string';
 
   const Component = normalize(
     styled(tag).withConfig({
@@ -23,6 +24,7 @@ export const makeComponent = (styled, tag, styles, config, other) => {
       return cssObject;
     }),
     rulesCreator,
+    cleanProps,
   );
 
   if (config.name) {

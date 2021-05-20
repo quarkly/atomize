@@ -8,6 +8,14 @@ const Element = atomize('div')({
   aliases: true,
 });
 
+// eslint-disable-next-line react/jsx-props-no-spreading
+const Child = props => <div {...props} />;
+
+const ElementWithComponent = atomize(Child)({
+  effects: { hover: ':hover' },
+  aliases: true,
+});
+
 describe('atomize filter props keys', () => {
   test('filter', () => {
     const tree = renderer.create(<Element color="red" />).toJSON();
@@ -43,6 +51,20 @@ describe('atomize filter props keys', () => {
 
       <div
         className="c0"
+        color_passed="red"
+      />
+    `);
+  });
+  test('pass to fn children', () => {
+    const tree = renderer.create(<ElementWithComponent color="red" color_passed="red" />).toJSON();
+    expect(tree).toMatchInlineSnapshot(`
+      .c0 {
+        color: red;
+      }
+
+      <div
+        className="c0"
+        color="red"
         color_passed="red"
       />
     `);
