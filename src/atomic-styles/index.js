@@ -16,9 +16,12 @@ export const makeComponent = (styled, tag, styles, config, other) => {
   const rules = isArray(other) ? other : [];
   const cleanProps = typeof tag === 'string';
 
+  const denieList = ['cssObject'];
+  if (cleanProps) denieList.push('theme');
+
   const Component = normalize(
     styled(tag).withConfig({
-      shouldForwardProp: prop => !['cssObject'].includes(prop),
+      shouldForwardProp: prop => !denieList.includes(prop),
     })(rules, props => {
       const { cssObject } = props;
       return cssObject;

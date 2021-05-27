@@ -1,5 +1,6 @@
 import React from 'react';
 import { isString, isObject } from 'lodash/fp';
+import { useTheme } from 'styled-components';
 
 const normalizeMap = {
   as(value) {
@@ -22,7 +23,8 @@ export const normalizer = props => {
 
 export default (Tag, cb, cleanProps) =>
   React.forwardRef((props, ref) => {
-    const { cssObject, cleanedProps } = cb(props);
+    const theme = useTheme(props);
+    const { cssObject, cleanedProps } = cb({ theme, ...props });
     return React.createElement(Tag, {
       ref,
       ...normalizer(cleanProps ? cleanedProps : props),

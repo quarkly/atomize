@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
+import { ThemeProvider } from 'styled-components';
 import atomize from '../../src';
 
 const Element = atomize('div')({
@@ -65,6 +66,60 @@ describe('atomize filter props keys', () => {
       <div
         className="c0"
         color="red"
+        color_passed="red"
+      />
+    `);
+  });
+  test('test props theme pass', () => {
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={{ breakpoints: { kek: [{ type: 'max-width', value: '1280' }] } }}>
+          <ElementWithComponent kek-color="blue" color="red" color_passed="red" />
+        </ThemeProvider>,
+      )
+      .toJSON();
+
+    expect(tree).toMatchInlineSnapshot(`
+      .c0 {
+        color: red;
+      }
+
+      @media (max-width:1280px) {
+        .c0 {
+          color: blue;
+        }
+      }
+
+      <div
+        className="c0"
+        color="red"
+        color_passed="red"
+        kek-color="blue"
+      />
+    `);
+  });
+  test('test props theme', () => {
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={{ breakpoints: { kek: [{ type: 'max-width', value: '1280' }] } }}>
+          <Element kek-color="blue" color="red" color_passed="red" />
+        </ThemeProvider>,
+      )
+      .toJSON();
+
+    expect(tree).toMatchInlineSnapshot(`
+      .c0 {
+        color: red;
+      }
+
+      @media (max-width:1280px) {
+        .c0 {
+          color: blue;
+        }
+      }
+
+      <div
+        className="c0"
         color_passed="red"
       />
     `);
