@@ -1,45 +1,32 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { StyledInterface, AnyStyledComponent } from 'styled-components';
 import { CompoundedComponent } from './CompoundedComponent';
 import { Effects, Descripton, PropInfo } from './QuarklyWidget';
 
-export type Tags = keyof JSX.IntrinsicElements;
-
-export type MakeCompoundedComponent<
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>
-> = (config?: Config, defaultProps?: any) => CompoundedComponent<C>;
+export type Tags = keyof StyledInterface;
 
 export type AtomComponentFactories = {
-  [tag in Tags]: MakeCompoundedComponent<tag>;
+  [tag in keyof JSX.IntrinsicElements]: <P extends object, U extends boolean = true>(
+    config: Config<U>,
+    defaultProps: any,
+  ) => CompoundedComponent<keyof JSX.IntrinsicElements, P, U>;
 };
 
-export type AtomFunction = (
-  component: React.ComponentType<any>,
-) => MakeCompoundedComponent<typeof component>;
-
 export interface Atom extends AtomComponentFactories {
-  (tag: React.ComponentType<any>): MakeCompoundedComponent<typeof tag>;
+  <C extends AnyStyledComponent | (keyof JSX.IntrinsicElements | React.ComponentType<any>)>(
+    tag: C,
+  ): <P extends object, U extends boolean = true>(
+    config: Config<U>,
+    defaultProps: any,
+  ) => CompoundedComponent<typeof tag, P, U>;
 }
 
-export type MakeAtomFunction = (
-  tag: Tags | React.ComponentType<any>,
-  config?: Config,
-  defaultProps?: any,
-) => CompoundedComponent<typeof tag>;
-
-export type MakeComponentFunction = (
-  styled: StyledInterface,
-  tag: AnyStyledComponent,
-  styles: any,
-  config: Config,
-  other: any,
-) => CompoundedComponent<typeof tag>;
-
-export type Config = {
+export type Config<UseAliases extends boolean> = {
   name?: string;
   description?: Descripton;
   effects?: Effects;
   propInfo?: PropInfo;
-  useAliases?: boolean;
+  useAliases?: UseAliases;
   // TODO
   styles?: any;
   overrides?: any;
