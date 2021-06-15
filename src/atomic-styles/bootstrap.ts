@@ -171,26 +171,27 @@ export const sortByBreakpointsOrder = (chunks, props) => {
   );
 };
 
-export default (config, defaultProps = {}) => componentProps => {
-  const props = { ...defaultProps, ...componentProps };
+export default (config, defaultProps = {}) =>
+  componentProps => {
+    const props = { ...defaultProps, ...componentProps };
 
-  const deps = [];
-  if (config.name) {
-    deps.push(themed(config.name));
-  }
-  if (config.variant) {
-    deps.push(variants(config.variant));
-  }
-  if (config.mixins) {
-    deps.push(mixins);
-  }
-  // apply styles in breakpoints order
-  const overrider = createOverriderStyles(deps);
-  const chunks = sortByBreakpointsOrder(createChunks(props, config), props);
-  return chunks.reduce((acc, { chains, value }) => {
-    const propKey = createChainStream(chains);
-    const { css } = createStyleRule({ propKey, value, props, config });
-    if (!css) return acc;
-    return merge(acc, css);
-  }, overrider(props));
-};
+    const deps = [];
+    if (config.name) {
+      deps.push(themed(config.name));
+    }
+    if (config.variant) {
+      deps.push(variants(config.variant));
+    }
+    if (config.mixins) {
+      deps.push(mixins);
+    }
+    // apply styles in breakpoints order
+    const overrider = createOverriderStyles(deps);
+    const chunks = sortByBreakpointsOrder(createChunks(props, config), props);
+    return chunks.reduce((acc, { chains, value }) => {
+      const propKey = createChainStream(chains);
+      const { css } = createStyleRule({ propKey, value, props, config });
+      if (!css) return acc;
+      return merge(acc, css);
+    }, overrider(props));
+  };
