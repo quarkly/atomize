@@ -1,6 +1,6 @@
 import { isArray, isPlainObject } from 'lodash/fp';
 import bootstrap from './bootstrap';
-import dict from '../constants/dict';
+import dict, { hashPropsWithAliases } from '../constants/dict';
 import normalize from '../utils/normalize-props';
 import makePropInfo from '../prop-info';
 
@@ -14,14 +14,22 @@ export const makeComponent = (styled, tag, styles, config, other) => {
   const defaultProps = isPlainObject(other) ? other : undefined;
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
-  const cleanProps = typeof tag === 'string';
-
+  const isComponent = typeof tag !== 'string';
+  const cleanProps = !isComponent;
   const denieList = ['cssObject'];
+
   if (cleanProps) denieList.push('theme');
 
   const Component = normalize(
     styled(tag).withConfig({
-      shouldForwardProp: prop => !denieList.includes(prop),
+      shouldForwardProp: prop => {
+        // delete a property if it is specified as a definition styles or aliases
+        if (isComponent && Object.prototype.hasOwnProperty.call(hashPropsWithAliases, prop)) {
+          return false;
+        }
+
+        return !denieList.includes(prop);
+      },
     })(rules, props => {
       const { cssObject } = props;
       return cssObject;
