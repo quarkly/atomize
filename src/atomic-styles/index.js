@@ -1,8 +1,9 @@
 import { isArray, isPlainObject } from 'lodash/fp';
 import bootstrap from './bootstrap';
-import dict, { hashPropsWithAliases } from '../constants/dict';
+import dict from '../constants/dict';
 import normalize from '../utils/normalize-props';
 import makePropInfo from '../prop-info';
+import forwardPropertyValidatorsFactory from './forward-properties/forward-property-validators.factory';
 
 const defaultStyles = Object.keys(dict);
 
@@ -20,16 +21,14 @@ export const makeComponent = (styled, tag, styles, config, other) => {
 
   if (cleanProps) denieList.push('theme');
 
+  const shouldForwardProp = forwardPropertyValidatorsFactory(
+    config,
+    prop => !denieList.includes(prop),
+  );
+
   const Component = normalize(
     styled(tag).withConfig({
-      shouldForwardProp: prop => {
-        // delete a property if it is specified as a definition styles or aliases
-        if (isComponent && Object.prototype.hasOwnProperty.call(hashPropsWithAliases, prop)) {
-          return false;
-        }
-
-        return !denieList.includes(prop);
-      },
+      shouldForwardProp,
     })(rules, props => {
       const { cssObject } = props;
       return cssObject;
@@ -57,9 +56,11 @@ export const makeComponent = (styled, tag, styles, config, other) => {
 
 export const makeAtom = styled => (tag, config = {}, defaultProps) => {
   const styles = config.styles || defaultStyles;
+
   if (isTemplate(config)) {
     return makeComponent(styled, tag, styles, {}, config);
   }
+
   return makeComponent(styled, tag, styles, { ...defaultConfig, ...config }, defaultProps);
 };
 
