@@ -3,7 +3,6 @@ import bootstrap from './bootstrap';
 import dict from '../constants/dict';
 import normalize from '../utils/normalize-props';
 import makePropInfo from '../prop-info';
-import forwardPropertyValidatorsFactory from './forward-properties/forward-property-validators.factory';
 
 const defaultStyles = Object.keys(dict);
 
@@ -11,30 +10,26 @@ const defaultConfig = { useAliases: true };
 
 export const isTemplate = arg => isArray(arg);
 
-export const makeComponent = (styled, tag, styles, config, other) => {
+export const makeComponent = (styled, tag, _styles, config, other) => {
+  const { forwardCssProperties } = config;
   const defaultProps = isPlainObject(other) ? other : undefined;
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
-  const isComponent = typeof tag !== 'string';
-  const cleanProps = !isComponent;
+  const pureCSS =
+    typeof forwardCssProperties === 'boolean' ? !forwardCssProperties : typeof tag === 'string';
   const denieList = ['cssObject'];
 
-  if (cleanProps) denieList.push('theme');
-
-  const shouldForwardProp = forwardPropertyValidatorsFactory(
-    config,
-    prop => !denieList.includes(prop),
-  );
+  if (pureCSS) denieList.push('theme');
 
   const Component = normalize(
     styled(tag).withConfig({
-      shouldForwardProp,
+      shouldForwardProp: prop => !denieList.includes(prop),
     })(rules, props => {
       const { cssObject } = props;
       return cssObject;
     }),
     rulesCreator,
-    cleanProps,
+    pureCSS,
   );
 
   if (config.name) {
