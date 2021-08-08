@@ -10,14 +10,16 @@ const defaultConfig = { useAliases: true };
 
 export const isTemplate = arg => isArray(arg);
 
-export const makeComponent = (styled, tag, styles, config, other) => {
+export const makeComponent = (styled, tag, _styles, config, other) => {
+  const { forwardCssProperties } = config;
   const defaultProps = isPlainObject(other) ? other : undefined;
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
-  const cleanProps = typeof tag === 'string';
-
+  const pureCSS =
+    typeof forwardCssProperties === 'boolean' ? !forwardCssProperties : typeof tag === 'string';
   const denieList = ['cssObject'];
-  if (cleanProps) denieList.push('theme');
+
+  if (pureCSS) denieList.push('theme');
 
   const Component = normalize(
     styled(tag).withConfig({
@@ -27,7 +29,7 @@ export const makeComponent = (styled, tag, styles, config, other) => {
       return cssObject;
     }),
     rulesCreator,
-    cleanProps,
+    pureCSS,
   );
 
   if (config.name) {
@@ -49,9 +51,11 @@ export const makeComponent = (styled, tag, styles, config, other) => {
 
 export const makeAtom = styled => (tag, config = {}, defaultProps) => {
   const styles = config.styles || defaultStyles;
+
   if (isTemplate(config)) {
     return makeComponent(styled, tag, styles, {}, config);
   }
+
   return makeComponent(styled, tag, styles, { ...defaultConfig, ...config }, defaultProps);
 };
 

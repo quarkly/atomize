@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = false isn't included styles 1`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color_passed="red"
+/>
+`;
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = false isn't included styles 2`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color_passed="red"
+/>
+`;
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = true isn't included styles 1`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color="red"
+  color_passed="red"
+/>
+`;
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = true isn't included styles 2`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color="red"
+  color_passed="red"
+/>
+`;
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = undefined isn't included styles 1`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color="red"
+  color_passed="red"
+/>
+`;
+
+exports[`atomize filter props keys test cleaning style props with forwardCssProperties = undefined isn't included styles 2`] = `
+.c0 {
+  color: red;
+}
+
+<div
+  className="c0"
+  color_passed="red"
+/>
+`;

@@ -124,4 +124,34 @@ describe('atomize filter props keys', () => {
       />
     `);
   });
+
+  describe.each([undefined, false, true])(
+    'test cleaning style props with forwardCssProperties = %p',
+    forwardCssProperties => {
+      const Primitive = atomize('div')({
+        effects: { hover: ':hover' },
+        aliases: true,
+        forwardCssProperties,
+      });
+
+      const ComponentWithoutStylesProp = atomize(Child)({
+        effects: { hover: ':hover' },
+        aliases: true,
+        forwardCssProperties,
+      });
+
+      test("isn't included styles", () => {
+        const treeComponent = renderer
+          .create(<ComponentWithoutStylesProp color="red" color_passed="red" />)
+          .toJSON();
+        const treePrimitive = renderer
+          .create(<Primitive color="red" color_passed="red" />)
+          .toJSON();
+
+        expect(treeComponent).toMatchSnapshot();
+
+        expect(treePrimitive).toMatchSnapshot();
+      });
+    },
+  );
 });
