@@ -310,7 +310,6 @@ const dict = {
   'clip-path': { type: 'string' },
   'will-change': { type: 'string' },
   'place-items': { type: 'string' },
-  'page-size': { type: 'string' },
   'text-size-adjust': { type: 'string' },
   'scroll-snap-type': { type: 'string' },
   'scroll-snap-align': { type: 'string' },
