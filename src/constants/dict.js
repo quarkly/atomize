@@ -323,7 +323,6 @@ const dict = {
   'mask-size': { type: 'string' },
   'mask-border': { type: 'string' },
   'mask-box-image': { type: 'string' },
-  'text-edge': { type: 'string' },
   'leading-trim': { type: 'string' },
   'text-fill-color': { type: 'string' },
 };
