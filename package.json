@@ -31,7 +31,7 @@
   ],
   "peerDependencies": {
     "styled-components": "^5.0.1",
-    "react": "^16.13.0"
+    "react": "^16.13.0 || ^17"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
