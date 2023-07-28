@@ -1,17 +1,20 @@
 import * as CSS from 'csstype';
+import { ConditionalPick, ReadonlyDeep } from 'type-fest';
 
 type CustomProperties = 'padding-x' | 'padding-y' | 'margin-x' | 'margin-y';
 
-export interface CSSProperty {
+type CSSPropertyType = 'string' | 'number';
+
+export type CSSProperty = ReadonlyDeep<{
   alias?: string;
   scale?: string;
   transformer?: string;
-  type?: string[] | string;
+  type: CSSPropertyType | CSSPropertyType[];
   process?: boolean;
   compose?: string[];
-}
+}>;
 
-export type Dict = {
+type PossibleDict = {
   [key in keyof CSS.PropertiesHyphen | CustomProperties]?: CSSProperty;
 };
 
@@ -34,7 +37,7 @@ const dict = {
   background: { alias: 'bg', type: 'string' },
   'background-attachment': { alias: 'bga', type: 'string' },
   'background-blend-mode': { alias: 'bgbm', type: 'string' },
-  'background-break': { alias: 'bgbk', type: 'string' },
+  // ? 'background-break': { alias: 'bgbk', type: 'string' },
   'background-clip': { alias: 'bgcp', type: 'string' },
   'background-color': { alias: 'bgc', type: 'string' },
   'background-image': { alias: 'bgi', type: 'string' },
@@ -47,18 +50,18 @@ const dict = {
   border: { alias: 'bd', type: 'string' },
   'border-bottom': { alias: 'bdb', type: 'string' },
   'border-bottom-color': { alias: 'bdbc', type: 'string' },
-  'border-bottom-image': { alias: 'bdbi', type: 'string' },
-  'border-bottom-left-image': { alias: 'bdbli', type: 'string' },
+  // ? 'border-bottom-image': { alias: 'bdbi', type: 'string' },
+  // ? 'border-bottom-left-image': { alias: 'bdbli', type: 'string' },
   'border-bottom-left-radius': { alias: 'bdblrs', type: 'string' },
-  'border-bottom-right-image': { alias: 'bdbri', type: 'string' },
+  // ? 'border-bottom-right-image': { alias: 'bdbri', type: 'string' },
   'border-bottom-right-radius': { alias: 'bdbrrs', type: 'string' },
   'border-bottom-style': { alias: 'bdbs', type: 'string' },
   'border-bottom-width': { alias: 'bdbw', type: 'string' },
-  'border-break': { alias: 'bdbk', type: 'string' },
+  // ? 'border-break': { alias: 'bdbk', type: 'string' },
   'border-collapse': { alias: 'bdcl', type: 'string' },
-  'border-corner-image': { alias: 'bdci', type: 'string' },
+  // ? 'border-corner-image': { alias: 'bdci', type: 'string' },
   'border-color': { alias: 'bdc', type: 'string' },
-  'border-fit': { alias: 'bdf', type: 'string' },
+  // ? 'border-fit': { alias: 'bdf', type: 'string' },
   'border-image': { alias: 'bdi', type: 'string' },
   'border-image-outset': { alias: 'bdio', type: 'string' },
   'border-image-repeat': { alias: 'bdir', type: 'string' },
@@ -67,24 +70,24 @@ const dict = {
   'border-image-width': { alias: 'bdiw', type: 'string' },
   'border-left': { alias: 'bdl', type: 'string' },
   'border-left-color': { alias: 'bdlc', type: 'string' },
-  'border-left-image': { alias: 'bdli', type: 'string' },
+  // ? 'border-left-image': { alias: 'bdli', type: 'string' },
   'border-left-style': { alias: 'bdls', type: 'string' },
   'border-left-width': { alias: 'bdlw', type: 'string' },
-  'border-length': { alias: 'bdlen', type: 'string' },
+  // ? 'border-length': { alias: 'bdlen', type: 'string' },
   'border-radius': { alias: 'bdrs', transformer: 'pixel', type: 'string' },
   'border-right': { alias: 'bdr', type: 'string' },
   'border-right-color': { alias: 'bdrc', type: 'string' },
-  'border-right-image': { alias: 'bdri', type: 'string' },
+  // ? 'border-right-image': { alias: 'bdri', type: 'string' },
   'border-right-style': { alias: 'bdrst', type: 'string' },
   'border-right-width': { alias: 'bdrw', type: 'string' },
   'border-spacing': { alias: 'bdsp', type: 'string' },
   'border-style': { alias: 'bds', type: 'string' },
   'border-top': { alias: 'bdt', type: 'string' },
   'border-top-color': { alias: 'bdtc', type: 'string' },
-  'border-top-image': { alias: 'bdti', type: 'string' },
-  'border-top-left-image': { alias: 'bdtli', type: 'string' },
+  // ? 'border-top-image': { alias: 'bdti', type: 'string' },
+  // ? 'border-top-left-image': { alias: 'bdtli', type: 'string' },
   'border-top-left-radius': { alias: 'bdtlrs', type: 'string' },
-  'border-top-right-image': { alias: 'bdtri', type: 'string' },
+  // ? 'border-top-right-image': { alias: 'bdtri', type: 'string' },
   'border-top-right-radius': { alias: 'bdtrrs', type: 'string' },
   'border-top-style': { alias: 'bdts', type: 'string' },
   'border-top-width': { alias: 'bdtw', type: 'string' },
@@ -129,11 +132,11 @@ const dict = {
   'flex-wrap': { alias: 'fxw', type: 'string' },
   float: { alias: 'fl', type: 'string' },
   font: { type: 'string' },
-  'font-display': { alias: 'fd', type: 'string' },
-  'font-effect': { alias: 'fef', type: 'string' },
-  'font-emphasize': { alias: 'fem', type: 'string' },
-  'font-emphasize-position': { alias: 'femp', type: 'string' },
-  'font-emphasize-style': { alias: 'fems', type: 'string' },
+  // ? 'font-display': { alias: 'fd', type: 'string' },
+  // ? 'font-effect': { alias: 'fef', type: 'string' },
+  // ? 'font-emphasize': { alias: 'fem', type: 'string' },
+  // ? 'font-emphasize-position': { alias: 'femp', type: 'string' },
+  // ? 'font-emphasize-style': { alias: 'fems', type: 'string' },
   'font-family': { alias: 'ff', type: 'string' },
   'font-feature-settings': { alias: 'ffs', type: 'string' },
   'font-kerning': { alias: 'fk', type: 'string' },
@@ -144,7 +147,7 @@ const dict = {
     type: ['number', 'string'],
   },
   'font-size-adjust': { alias: 'fsza', type: 'string' },
-  'font-smoothing': { alias: 'fsm', type: 'string' },
+  // ? 'font-smoothing': { alias: 'fsm', type: 'string' },
   'font-stretch': { alias: 'fst', type: 'string' },
   'font-style': { alias: 'fs', type: 'string' },
   'font-variant': { alias: 'fv', type: 'string' },
@@ -212,25 +215,25 @@ const dict = {
   mask: { type: 'string' },
   'mask-type': { type: 'string' },
   'max-height': { alias: 'mah', transformer: 'pixel', type: ['number', 'string'] },
-  'max-resolution': { alias: 'mar', type: 'string' },
+  // ? 'max-resolution': { alias: 'mar', type: 'string' },
   'max-width': { alias: 'maw', transformer: 'pixel', type: ['number', 'string'] },
   'min-height': { alias: 'mih', transformer: 'pixel', type: ['number', 'string'] },
-  'min-resolution': { alias: 'mir', type: 'string' },
+  // ? 'min-resolution': { alias: 'mir', type: 'string' },
   'min-width': { alias: 'miw', transformer: 'pixel', type: ['number', 'string'] },
   'mix-blend-mode': { alias: 'mbm', type: 'string' },
   'object-fit': { alias: 'of', type: 'string' },
   'object-position': { alias: 'obp', type: 'string' },
   opacity: { alias: 'op', type: ['number', 'string'] },
   order: { alias: 'ord', type: 'string' },
-  orientation: { alias: 'ori', type: 'string' },
+  // ? orientation: { alias: 'ori', type: 'string' },
   orphans: { alias: 'orp', type: 'string' },
   outline: { alias: 'ol', type: 'string' },
   'outline-color': { alias: 'olc', type: 'string' },
   'outline-offset': { alias: 'olo', type: 'string' },
   'outline-style': { alias: 'ols', type: 'string' },
-  'outline-width|thin|medium|thick': { alias: 'olw', type: 'string' },
+  'outline-width': { alias: 'olw', type: 'string' },
   overflow: { alias: 'ov', type: 'string' },
-  'overflow-style': { alias: 'ovs', type: 'string' },
+  // ? 'overflow-style': { alias: 'ovs', type: 'string' },
   'overflow-wrap': { type: 'string' },
   'overflow-x': { alias: 'ovx', type: 'string' },
   'overflow-y': { alias: 'ovy', type: 'string' },
@@ -269,13 +272,13 @@ const dict = {
   'pointer-events': { alias: 'pe', type: 'string' },
   position: { alias: 'pos', type: 'string' },
   quotes: { type: 'string' },
-  ratio: { type: ['number', 'string'] },
-  'ratio-padding': { type: ['number', 'string'] },
+  // ? ratio: { type: ['number', 'string'] },
+  // ? 'ratio-padding': { type: ['number', 'string'] },
   resize: { alias: 'rsz', type: 'string' },
   right: { alias: 'r', transformer: 'pixel', type: ['number', 'string'] },
   'scroll-behavior': { type: 'string' },
-  'size-height': { type: 'string' },
-  'size-width': { type: 'string' },
+  // ? 'size-height': { type: 'string' },
+  // ? 'size-width': { type: 'string' },
   'tab-size': { type: 'string' },
   'table-layout': { alias: 'tbl', type: 'string' },
   'text-align': { alias: 'ta', type: 'string' },
@@ -287,17 +290,17 @@ const dict = {
   'text-decoration-style': { alias: 'tds', type: 'string' },
   'text-decoration-thickness': { alias: 'tdth', type: 'string' },
   'text-emphasis': { alias: 'te', type: 'string' },
-  'text-height': { alias: 'th', type: 'string' },
+  // ? 'text-height': { alias: 'th', type: 'string' },
   'text-indent': { alias: 'ti', type: ['number', 'string'] },
   'text-justify': { alias: 'tj', type: 'string' },
   'text-orientation': { alias: 'tori', type: 'string' },
-  'text-outline': { alias: 'to', type: 'string' },
+  // ? 'text-outline': { alias: 'to', type: 'string' },
   'text-overflow': { alias: 'tov', type: 'string' },
-  'text-replace': { alias: 'tr', type: 'string' },
+  // ? 'text-replace': { alias: 'tr', type: 'string' },
   'text-shadow': { alias: 'tsh', type: 'string' },
   'text-transform': { alias: 'tt', type: 'string' },
   'text-underline-position': { alias: 'tup', type: 'string' },
-  'text-wrap': { alias: 'tw', type: 'string' },
+  // ? 'text-wrap': { alias: 'tw', type: 'string' },
   top: { alias: 't', transformer: 'pixel', type: ['number', 'string'] },
   transform: { alias: 'trf', type: 'string' },
   'transform-origin': { alias: 'trfo', type: 'string' },
@@ -312,7 +315,7 @@ const dict = {
   'vertical-align': { alias: 'va', type: 'string' },
   visibility: { alias: 'v', type: 'string' },
   'white-space': { alias: 'whs', type: 'string' },
-  'white-space-collapse': { alias: 'whsc', type: 'string' },
+  // ? 'white-space-collapse': { alias: 'whsc', type: 'string' },
   widows: { alias: 'wid', type: 'string' },
   width: { alias: 'w', transformer: 'width', type: ['number', 'string'] },
   'word-break': { alias: 'wob', type: 'string' },
@@ -339,10 +342,12 @@ const dict = {
   'mask-repeat': { type: 'string' },
   'mask-size': { type: 'string' },
   'mask-border': { type: 'string' },
-  'mask-box-image': { type: 'string' },
-  'leading-trim': { type: 'string' },
-  'text-fill-color': { type: 'string' },
-};
+  // ? 'mask-box-image': { type: 'string' },
+  // ? 'leading-trim': { type: 'string' },
+  // ? 'text-fill-color': { type: 'string' },
+} as const satisfies ReadonlyDeep<PossibleDict>;
+
+export type Dict = typeof dict;
 
 export const hashPropsWithAliases = Object.keys(dict).reduce((acc, name) => {
   const propValue = { ...dict[name], name };
@@ -350,5 +355,16 @@ export const hashPropsWithAliases = Object.keys(dict).reduce((acc, name) => {
   if (propValue.alias) acc[propValue.alias] = propValue;
   return acc;
 }, {});
+
+export type AvailableProps = {
+  -readonly [key in keyof Dict]?: Dict[key]['type'];
+};
+
+export type Aliases = {
+  -readonly [key in keyof ConditionalPick<
+    Dict,
+    { alias: string }
+  > as Dict[key]['alias']]?: Dict[key]['type'];
+};
 
 export default dict;

@@ -17,8 +17,8 @@ Atomize aliases are short names for each css rule
 const genRule = (name, alias) => `\n| *${name}* | \`${alias}\` |`;
 
 const b = () => {
-  const result = Object.entries(dict).reduce((acc, [name, { alias = 'none' }]) => {
-    acc += genRule(name, alias);
+  const result = Object.entries(dict).reduce((acc, [name, property]) => {
+    acc += genRule(name, property['alias'] ?? 'none');
     return acc;
   }, TPL);
 
