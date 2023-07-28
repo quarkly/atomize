@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { StyledInterface, AnyStyledComponent } from 'styled-components';
-import { CompoundedComponent } from './CompoundedComponent';
-import { Effects, Descripton, PropInfo } from './QuarklyWidget';
+import { CompoundedComponent, Config } from './CompoundedComponent';
 
 export type Tags = keyof StyledInterface;
 
@@ -20,15 +19,3 @@ export interface Atom extends AtomComponentFactories {
     defaultProps: any,
   ) => CompoundedComponent<typeof tag, P, U>;
 }
-
-export type Config<UseAliases extends boolean> = {
-  name?: string;
-  description?: Descripton;
-  effects?: Effects;
-  propInfo?: PropInfo;
-  useAliases?: UseAliases;
-  forwardCssProperties?: boolean;
-  // TODO
-  styles?: any;
-  overrides?: any;
-};

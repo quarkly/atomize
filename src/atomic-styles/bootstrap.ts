@@ -12,7 +12,7 @@ import {
   searchBreakpointInKey,
   searchEffectInKey,
 } from './search-rule';
-import { Config } from '../types/Atom';
+import { Config } from '../types/CompoundedComponent';
 
 export const getTransformer = name => get(transformers, name, defaultTransformer);
 

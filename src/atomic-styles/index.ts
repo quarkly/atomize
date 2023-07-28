@@ -2,18 +2,18 @@
 import { StyledInterface, AnyStyledComponent, StyledComponent } from 'styled-components';
 import { isArray, isPlainObject } from 'lodash/fp';
 
-import { Atom, Config } from '../types/Atom';
+import { Atom } from '../types/Atom';
 
 import bootstrap from './bootstrap';
 import dict from '../constants/dict';
 import normalize from '../utils/normalize-props';
 import makePropInfo from '../prop-info';
 
-import { CompoundedComponent } from '../types/CompoundedComponent';
+import { CompoundedComponent, Config } from '../types/CompoundedComponent';
 
 const defaultStyles = Object.keys(dict);
 
-const defaultConfig = { useAliases: true };
+const defaultConfig = { useAliases: true } as Config<true>;
 
 export const isTemplate = arg => isArray(arg);
 
@@ -79,7 +79,13 @@ export const makeAtom =
       return makeComponent(styled, tag, styles, {}, config);
     }
 
-    return makeComponent(styled, tag, styles, { ...defaultConfig, ...config }, defaultProps);
+    return makeComponent<T, P, (typeof config)['useAliases']>(
+      styled,
+      tag,
+      styles,
+      { ...defaultConfig, ...config } as Config<U>,
+      defaultProps,
+    );
   };
 
 export const wrap = (styled: StyledInterface): Atom => {
