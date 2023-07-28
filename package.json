@@ -1,6 +1,6 @@
 {
   "name": "@quarkly/atomize",
-  "version": "1.0.6",
+  "version": "1.0.20",
   "author": "Eddort",
   "description": "Library for creating atomic react components",
   "main": "build/bundle.cjs.js",
@@ -31,8 +31,8 @@
     "styled-system"
   ],
   "peerDependencies": {
-    "react": "^16.13.0",
-    "styled-components": "^5.0.1"
+    "styled-components": ">=5.0.1",
+    "react": "16.x || 17.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

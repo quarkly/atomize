@@ -9,9 +9,9 @@ function typeIsArray(type: string | string[]): type is Array<string> {
 const w = (v: string) => (/\s|-/.test(v) ? `'${v}'` : v);
 
 const generate = (isAlias = false) =>
-  Object.keys(dict)
-    .filter((k: keyof Dict) => (isAlias ? dict[k].alias : true))
-    .map((k: keyof Dict) => {
+  (Object.keys(dict) as Array<keyof Dict>)
+    .filter(k => (isAlias ? dict[k].alias : true))
+    .map(k => {
       const propKey = isAlias ? dict[k].alias : k;
       if (!propKey) return;
       const types = dict[k].type;

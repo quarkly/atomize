@@ -27,6 +27,7 @@ export type Config<UseAliases extends boolean> = {
   effects?: Effects;
   propInfo?: PropInfo;
   useAliases?: UseAliases;
+  forwardCssProperties?: boolean;
   // TODO
   styles?: any;
   overrides?: any;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { StyledInterface, AnyStyledComponent } from 'styled-components';
+import { StyledInterface, AnyStyledComponent, StyledComponent } from 'styled-components';
 import { isArray, isPlainObject } from 'lodash/fp';
 
 import { Atom, Config } from '../types/Atom';
@@ -24,17 +24,28 @@ export const makeComponent = <
 >(
   styled: StyledInterface,
   tag: T,
-  styles: any,
+  _styles: any,
   config: Config<U>,
   other: any,
-): CompoundedComponent<T, P, U> => {
+): CompoundedComponent<StyledComponent<T, any, P, never>, P, U> => {
+  const { forwardCssProperties } = config;
   const defaultProps = isPlainObject(other) ? other : undefined;
   const rulesCreator = bootstrap(config, defaultProps);
   const rules = isArray(other) ? other : [];
+  const pureCSS =
+    typeof forwardCssProperties === 'boolean' ? !forwardCssProperties : typeof tag === 'string';
+  const denieList = ['cssObject'];
 
-  const Component = normalize<T, P, typeof config['useAliases']>(
-    styled(tag)<P>(rules as any, rulesCreator) as T,
-  );
+  if (pureCSS) denieList.push('theme');
+
+  const c = styled<T>(tag).withConfig<P>({
+    shouldForwardProp: prop => !denieList.includes(prop.toString()),
+  })(rules as any, props => {
+    const { cssObject } = props;
+    return cssObject as {};
+  });
+  const Component = normalize<typeof c, P, (typeof config)['useAliases']>(c, rulesCreator, pureCSS);
+
   if (config.name) {
     Component.displayName = config.name;
   }
@@ -62,7 +73,7 @@ export const makeAtom =
     tag: T,
     config: Config<U> = {},
     defaultProps: { [K in React.ComponentProps<T>]: unknown },
-  ): CompoundedComponent<T, P, U> => {
+  ): CompoundedComponent<StyledComponent<T, any, P, never>, P, U> => {
     const styles = config.styles || defaultStyles;
     if (isTemplate(config)) {
       return makeComponent(styled, tag, styles, {}, config);
