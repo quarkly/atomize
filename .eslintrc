@@ -1,6 +1,11 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
-  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "jasmine": true,
@@ -9,7 +14,7 @@
   "globals": {
     "test": true
   },
-  "plugins": ["react"],
+  "plugins": ["import", "react", "@typescript-eslint"],
   "rules": {
     "react/forbid-prop-types": 0,
     "global-require": 0,
@@ -32,6 +37,39 @@
     "no-return-assign": 0,
     "react/no-find-dom-node": 0,
     "no-param-reassign": 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  },
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["off"],
+        "@typescript-eslint/ban-types": ["off"]
+      }
+    }
+  ],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".js", ".jsx", ".ts",".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".js",".jsx",".ts",".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
   }
 }
