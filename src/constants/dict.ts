@@ -357,14 +357,16 @@ export const hashPropsWithAliases = Object.keys(dict).reduce((acc, name) => {
 }, {});
 
 export type AvailableProps = {
-  -readonly [key in keyof Dict]?: Dict[key]['type'];
+  -readonly [key in keyof Dict]?: key extends keyof CSS.PropertiesHyphen
+    ? CSS.PropertiesHyphen[key]
+    : Dict[key]['type'];
 };
 
 export type Aliases = {
   -readonly [key in keyof ConditionalPick<
     Dict,
     { alias: string }
-  > as Dict[key]['alias']]?: Dict[key]['type'];
+  > as Dict[key]['alias']]?: AvailableProps[key];
 };
 
 export default dict;

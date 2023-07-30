@@ -6,8 +6,8 @@ export type Tags = keyof StyledInterface;
 
 export type AtomComponentFactories = {
   [tag in keyof JSX.IntrinsicElements]: <P extends object, U extends boolean = true>(
-    config: Config<U>,
-    defaultProps: any,
+    config?: Config<U>,
+    defaultProps?: any,
   ) => CompoundedComponent<keyof JSX.IntrinsicElements, P, U>;
 };
 

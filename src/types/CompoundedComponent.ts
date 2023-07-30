@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent, AnyStyledComponent } from 'styled-components';
-import { AvailableProps, Aliases } from './AvailableProps';
+import { AvailableProps, Aliases } from '../constants/dict';
 import { Descripton, Effects, PropInfo } from './QuarklyWidget';
 /*
 // https://github.com/microsoft/TypeScript/issues/32447
