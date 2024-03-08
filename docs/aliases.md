@@ -140,6 +140,7 @@ Atomize aliases are short names for each css rule
 | *font-variant-position* | `fvp` |
 | *font-variation-settings* | `fvs` |
 | *font-weight* | `fw` |
+| *gap* | `g` |
 | *grid* | `gd` |
 | *grid-area* | `gda` |
 | *grid-auto-columns* | `gdac` |
@@ -223,6 +224,7 @@ Atomize aliases are short names for each css rule
 | *ratio-padding* | `none` |
 | *resize* | `rsz` |
 | *right* | `r` |
+| *row-gap* | `rowg` |
 | *scroll-behavior* | `none` |
 | *size-height* | `none` |
 | *size-width* | `none` |
